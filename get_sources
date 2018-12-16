@@ -1,0 +1,21 @@
+#!/bin/bash
+
+mkdir -p build/external
+pushd build/external
+wget -nc http://nginx.org/download/nginx-1.11.4.tar.gz
+curl -sLo ngx_devel_kit-0.3.0.tar.gz https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.tar.gz
+wget -nc http://luajit.org/download/LuaJIT-2.0.4.tar.gz
+curl -sLo lua-resty-redis-0.24.tar.gz https://github.com/openresty/lua-resty-redis/archive/v0.24.tar.gz
+curl -sLo lua-cjson-2.1.0.tar.gz https://github.com/mpx/lua-cjson/archive/2.1.0.tar.gz
+curl -sLo lua-nginx-module-0.10.5.tar.gz https://github.com/openresty/lua-nginx-module/archive/v0.10.5.tar.gz
+curl -sLo incubator-ngx_pagespeed-1.11.33.4.tar.gz https://github.com/apache/incubator-pagespeed-ngx/archive/v1.11.33.4-beta.tar.gz
+tar xvzf incubator-ngx_pagespeed-1.11.33.4.tar.gz
+mv incubator-pagespeed-ngx-1.11.33.4-beta ngx_pagespeed-1.11.33.4
+pushd ngx_pagespeed-1.11.33.4
+wget https://dl.google.com/dl/page-speed/psol/1.11.33.4.tar.gz 
+tar xvzf 1.11.33.4.tar.gz
+rm 1.11.33.4.tar.gz
+popd
+tar cvzf ngx_pagespeed-1.11.33.4.tar.gz ngx_pagespeed-1.11.33.4
+rm -rf ngx_pagespeed-1.11.33.4
+popd
